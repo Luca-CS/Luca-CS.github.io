@@ -1,0 +1,730 @@
+/* Site de Luca Birtas : HTML et CSS, plus un petit script pour le bouton de thème. */
+
+/* ---------- Thème : clair « papier » ou sombre « encre » ---------- */
+
+:root {
+  color-scheme: light;
+  --bg: #fbfaf7;
+  --text: #17191e;
+  --muted: #5d6370;
+  --line: #e3e0d7;
+  --accent: #1f3a8a;
+  --serif: "Iowan Old Style", Charter, "Source Serif Pro", "Source Serif 4", Cambria, Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  --width: 52rem;
+}
+
+/* Sombre : réglage du système, sauf si le visiteur a choisi le clair avec le bouton. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #12151b;
+    --text: #e9e7e2;
+    --muted: #9ba2ae;
+    --line: #272c36;
+    --accent: #a3b8ff;
+  }
+}
+
+/* Sombre choisi avec le bouton. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #12151b;
+  --text: #e9e7e2;
+  --muted: #9ba2ae;
+  --line: #272c36;
+  --accent: #a3b8ff;
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Les ancres s'arrêtent sous l'en-tête collant (deux lignes sur téléphone, une au-delà). */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 7rem;
+}
+
+@media (min-width: 40rem) {
+  html {
+    scroll-padding-top: 4.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--width);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .container {
+    padding-inline: 1.5rem;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  top: -4rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--text);
+  color: var(--bg);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Petites capitales espacées : étiquettes, titres de section */
+.label,
+.facts dt,
+.section h2,
+.subhead,
+.card .card-kind,
+.skills dt {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+/* ---------- En-tête ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.site-header .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1.5rem;
+  min-height: 3.5rem;
+  padding-block: 0.5rem;
+}
+
+.brand {
+  margin-right: auto;
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: 1.15rem;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+/* Téléphone : nom et bouton de thème en haut, menu en dessous. */
+.theme-toggle {
+  order: 2;
+}
+
+.site-nav {
+  order: 3;
+  width: 100%;
+}
+
+@media (min-width: 40rem) {
+  .site-nav {
+    order: 2;
+    width: auto;
+  }
+
+  .theme-toggle {
+    order: 3;
+  }
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.site-nav a:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--muted);
+  color: var(--text);
+}
+
+.theme-toggle[hidden] {
+  display: none;
+}
+
+.theme-toggle svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Le bouton montre le thème vers lequel il bascule : la lune en clair, le soleil en sombre. */
+.icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .icon-sun {
+  display: block;
+}
+
+:root[data-theme="dark"] .icon-moon {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .icon-sun {
+    display: block;
+  }
+
+  :root:not([data-theme="light"]) .icon-moon {
+    display: none;
+  }
+}
+
+/* ---------- Accroche ---------- */
+
+.hero {
+  padding-block: clamp(3rem, 10vw, 5.5rem) clamp(3rem, 8vw, 4.5rem);
+}
+
+.status {
+  max-width: 36rem;
+  margin-bottom: 0.75rem;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-style: italic;
+}
+
+.hero h1 {
+  margin-bottom: 2rem;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 12vw, 4.75rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+
+.facts {
+  display: grid;
+  gap: 1rem 2.5rem;
+  margin: 0 0 2.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--text);
+}
+
+@media (min-width: 36rem) {
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.facts dt {
+  margin-bottom: 0.2rem;
+  color: var(--muted);
+}
+
+.facts dd {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.65rem 1.15rem;
+  border-radius: 2px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.925rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.btn:hover {
+  background: var(--accent);
+  text-decoration: none;
+}
+
+.textlink {
+  padding-bottom: 0.1rem;
+  border-bottom: 1px solid var(--accent);
+  font-size: 0.925rem;
+}
+
+.textlink:hover {
+  border-bottom-width: 2px;
+  text-decoration: none;
+}
+
+/* ---------- Sections : filet épais et titre en petites capitales ---------- */
+
+.section {
+  padding-bottom: clamp(3rem, 8vw, 4.5rem);
+}
+
+.section-head {
+  margin-bottom: 2rem;
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--text);
+}
+
+.section h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.section h2 .num {
+  color: var(--accent);
+}
+
+.section-head p {
+  max-width: 40rem;
+  margin-top: 0.75rem;
+  color: var(--muted);
+}
+
+.subhead {
+  margin: 2.5rem 0 1.25rem;
+  color: var(--muted);
+}
+
+.section-head + .subhead {
+  margin-top: 0;
+}
+
+/* ---------- Expériences et formation : dates à gauche, détail à droite ---------- */
+
+.entries {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.entries > li {
+  display: grid;
+  gap: 0.35rem 2rem;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.entries > li:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+@media (min-width: 40rem) {
+  .entries > li {
+    grid-template-columns: 10rem minmax(0, 1fr);
+  }
+}
+
+.entries .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 40rem) {
+  .entries .meta {
+    display: block;
+    padding-top: 0.3rem;
+  }
+}
+
+.entries h3,
+.entries h4 {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.entries .where {
+  margin: 0.1rem 0 0.6rem;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+
+.entries ul,
+.points {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.entries ul li,
+.points li {
+  position: relative;
+  margin-bottom: 0.4rem;
+  padding-left: 1.5rem;
+}
+
+.entries ul li::before,
+.points li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+}
+
+/* ---------- Projets : deux colonnes séparées par des filets, sans boîtes ---------- */
+
+.projects {
+  display: grid;
+  gap: 0 2.5rem;
+}
+
+@media (min-width: 48rem) {
+  .projects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding-block: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.card:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+@media (min-width: 48rem) {
+  .card:nth-child(2) {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+.card .card-kind {
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+}
+
+.card h3 {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.card .repo {
+  margin: 0.25rem 0 0.75rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
+
+.card p {
+  margin-bottom: 0.85rem;
+  font-size: 0.95rem;
+}
+
+.points {
+  margin-bottom: 1.1rem;
+  font-size: 0.9rem;
+}
+
+.card-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.tags li + li::before {
+  content: "·";
+  margin-inline: 0.45rem;
+}
+
+.card-link {
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+/* ---------- Compétences ---------- */
+
+.skills {
+  margin: 0;
+}
+
+.skills > div {
+  display: grid;
+  gap: 0.25rem 2rem;
+  padding-block: 0.9rem;
+  border-top: 1px solid var(--line);
+}
+
+.skills > div:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+@media (min-width: 40rem) {
+  .skills > div {
+    grid-template-columns: 10rem minmax(0, 1fr);
+  }
+}
+
+.skills dt {
+  padding-top: 0.2rem;
+  color: var(--muted);
+}
+
+.skills dd {
+  margin: 0;
+}
+
+.skills .tags {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+/* ---------- Contact ---------- */
+
+.mail {
+  display: inline-block;
+  border-bottom: 1px solid var(--accent);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: clamp(1.4rem, 5.5vw, 2.1rem);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.mail:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.mail .arrow {
+  color: var(--accent);
+  font-family: var(--sans);
+}
+
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.75rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- Pied de page ---------- */
+
+.site-footer {
+  padding-block: 1.5rem 3rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.site-footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+}
+
+.site-footer a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.site-footer a:hover {
+  color: var(--text);
+}
+
+/* ---------- Page 404 ---------- */
+
+.notfound {
+  display: grid;
+  place-content: center;
+  min-height: 70vh;
+  padding-block: 4rem;
+  text-align: center;
+}
+
+.notfound .code {
+  color: var(--accent);
+  font-family: var(--serif);
+  font-size: clamp(4rem, 18vw, 7rem);
+  line-height: 1;
+}
+
+.notfound h1 {
+  margin: 1rem 0 0.5rem;
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 400;
+}
+
+.notfound p {
+  margin-bottom: 2rem;
+  color: var(--muted);
+}
+
+.notfound .actions {
+  justify-content: center;
+}
+
+/* ---------- Impression : la page sort comme un CV propre ---------- */
+
+@media print {
+  :root,
+  :root[data-theme="dark"] {
+    color-scheme: light;
+    --bg: #fff;
+    --text: #000;
+    --muted: #333;
+    --line: #ccc;
+    --accent: #000;
+  }
+
+  body {
+    font-size: 10.5pt;
+  }
+
+  .skip-link,
+  .site-header,
+  .actions,
+  .link-row {
+    display: none !important;
+  }
+
+  .hero,
+  .section {
+    padding-block: 0.75rem;
+  }
+
+  .card,
+  .entries > li {
+    break-inside: avoid;
+  }
+
+  .card-link::after {
+    content: " (" attr(href) ")";
+  }
+}

@@ -1,0 +1,9 @@
+# Audit local du compte GitHub : miroirs, résultats de scan et rapport.
+# Peut contenir des extraits sensibles, ne jamais committer ni publier.
+audit/
+
+# Notes de passation entre sessions, pas pour le site publié
+HANDOFF_SITE.md
+
+# Réglages locaux de Claude Code (aperçu local)
+.claude/

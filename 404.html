@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found · Luca Birtas</title>
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#12151b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+  <script>
+    // Same theme as the one picked on the home page, if any.
+    try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Luca Birtas, home page">Luca Birtas</a>
+    </div>
+  </header>
+
+  <main class="container notfound">
+    <p class="code" aria-hidden="true">404</p>
+    <h1>Page not found</h1>
+    <p>This address leads nowhere. The whole site fits on a single page.</p>
+    <div class="actions">
+      <a class="btn" href="/">Back to the home page</a>
+      <a class="textlink" href="/#projects">See the projects</a>
+    </div>
+  </main>
+</body>
+</html>
