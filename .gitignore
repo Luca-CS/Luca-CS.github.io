@@ -3,7 +3,7 @@
 audit/
 
 # Notes de passation entre sessions, pas pour le site publié
-HANDOFF_SITE.md
+HANDOFF_*.md
 
 # Réglages locaux de Claude Code (aperçu local)
 .claude/
