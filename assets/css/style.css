@@ -562,6 +562,32 @@ p {
   white-space: nowrap;
 }
 
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+
+/* Démos filmées : la vidéo prend toute la largeur de la carte, ses attributs width/height évitent le saut de mise en page */
+.card-demo {
+  margin: 0 0 1rem;
+}
+
+.card-demo video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--line);
+}
+
+.card-demo figcaption {
+  margin-top: 0.4rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
 /* ---------- Compétences ---------- */
 
 .skills {
@@ -710,7 +736,8 @@ p {
   .skip-link,
   .site-header,
   .actions,
-  .link-row {
+  .link-row,
+  .card-demo {
     display: none !important;
   }
 

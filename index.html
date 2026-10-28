@@ -202,6 +202,28 @@
         <div class="projects">
           <article class="card">
             <p class="card-kind">Quantitative finance</p>
+            <h3>Option pricing lab: exotics under four models</h3>
+            <p class="repo">option-pricing-lab</p>
+            <p>A tested Python library that prices European, American, Asian and barrier options under Black-Scholes, Heston, Dupire local volatility and a stochastic-local-volatility model whose leverage function is calibrated by the particle method, all fitted to an SPX option snapshot.</p>
+            <ul class="points">
+              <li>Local volatility and SLV reprice the SPX surface to within 10 bp of implied volatility across nine maturities, from two weeks to two years.</li>
+              <li>Model risk made visible: with the vanillas held fixed, a one-year up-and-out call is worth 1.9% of spot under Black-Scholes and 3.5 to 4.7% under the smile models.</li>
+              <li>76 tests, each pricer checked against an independent reference: closed forms, a binomial tree, Reiner-Rubinstein barriers.</li>
+              <li>In-browser pricing desk: price and Greeks, animated Monte Carlo, early-exercise boundary.</li>
+            </ul>
+            <div class="card-foot">
+              <ul class="tags" aria-label="Technologies">
+                <li>Python</li><li>Monte Carlo</li><li>Heston</li><li>SLV</li><li>JavaScript</li>
+              </ul>
+              <span class="card-links">
+                <a class="card-link" href="https://luca-cs.github.io/option-pricing-lab/">Try the demo<span class="visually-hidden">: option pricing desk</span> ↗</a>
+                <a class="card-link" href="https://github.com/Luca-CS/option-pricing-lab">View code<span class="visually-hidden"> for option-pricing-lab</span> ↗</a>
+              </span>
+            </div>
+          </article>
+
+          <article class="card">
+            <p class="card-kind">Quantitative finance</p>
             <h3>Time-series momentum: overfitting or robust signal?</h3>
             <p class="repo">timeseries-momentum-study</p>
             <p>A momentum strategy studied on 10 assets with daily prices from 2000 to 2025. The protocol is built against overfitting: tests on the training period only, Holm-Bonferroni correction, backtest on the test period only.</p>
@@ -215,24 +237,6 @@
                 <li>Python</li><li>Jupyter</li><li>Backtest</li><li>HMM</li>
               </ul>
               <a class="card-link" href="https://github.com/Luca-CS/timeseries-momentum-study">View code<span class="visually-hidden"> for timeseries-momentum-study</span> ↗</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <p class="card-kind">Quantitative finance</p>
-            <h3>Option pricers</h3>
-            <p class="repo">Mini_codes</p>
-            <p>Pricing scripts: a European option priced by Monte Carlo under Black-Scholes, and a short-rate tree prototype for interest-rate options.</p>
-            <ul class="points">
-              <li>Variance reduction: antithetic variates and a control variate.</li>
-              <li>With 200,000 paths, both estimators land within one standard error of the closed-form Black-Scholes price.</li>
-              <li>The limitations of the rate prototype are listed in the README.</li>
-            </ul>
-            <div class="card-foot">
-              <ul class="tags" aria-label="Technologies">
-                <li>Python</li><li>NumPy</li><li>Monte Carlo</li>
-              </ul>
-              <a class="card-link" href="https://github.com/Luca-CS/Mini_codes">View code<span class="visually-hidden"> for Mini_codes</span> ↗</a>
             </div>
           </article>
 
@@ -256,24 +260,6 @@
           </article>
 
           <article class="card">
-            <p class="card-kind">Windows tool</p>
-            <h3>Disk Manager</h3>
-            <p class="repo">disk_manager</p>
-            <p>A fully local storage manager for Windows: treemap, duplicate finder, cache cleanup ranked by risk level, and disk usage history.</p>
-            <ul class="points">
-              <li>No dependencies: Python standard library and a web interface without a build step.</li>
-              <li>No network calls: server bound to 127.0.0.1, strict CSP, a random token on each launch.</li>
-              <li>Guarded deletions: recycle bin by default, allow-listed caches, protection against junctions and symbolic links.</li>
-            </ul>
-            <div class="card-foot">
-              <ul class="tags" aria-label="Technologies">
-                <li>Python</li><li>JavaScript</li><li>Windows</li>
-              </ul>
-              <a class="card-link" href="https://github.com/Luca-CS/disk_manager">View code<span class="visually-hidden"> for disk_manager</span> ↗</a>
-            </div>
-          </article>
-
-          <article class="card">
             <p class="card-kind">AI · School project</p>
             <h3>EmotionLLM</h3>
             <p class="repo">EmotionLLM</p>
@@ -292,9 +278,45 @@
           </article>
 
           <article class="card">
+            <p class="card-kind">Windows tool</p>
+            <h3>Disk Manager</h3>
+            <p class="repo">disk_manager</p>
+            <figure class="card-demo">
+              <video autoplay muted loop playsinline preload="metadata" width="1280" height="760"
+                     poster="assets/demo/disk-manager-poster.jpg"
+                     aria-label="Screen recording of Disk Manager in simulation mode on a folder of fake files: scan, treemap, duplicates, cleanup ranked by risk">
+                <source src="assets/demo/disk-manager-demo.webm" type="video/webm">
+                <source src="assets/demo/disk-manager-demo.mp4" type="video/mp4">
+              </video>
+              <figcaption>Recorded in simulation mode on a folder of fake files. Nothing is deleted.</figcaption>
+            </figure>
+            <p>A fully local storage manager for Windows: treemap, duplicate finder, cache cleanup ranked by risk level, and disk usage history.</p>
+            <ul class="points">
+              <li>No dependencies: Python standard library and a web interface without a build step.</li>
+              <li>No network calls: server bound to 127.0.0.1, strict CSP, a random token on each launch.</li>
+              <li>Guarded deletions: recycle bin by default, allow-listed caches, protection against junctions and symbolic links.</li>
+            </ul>
+            <div class="card-foot">
+              <ul class="tags" aria-label="Technologies">
+                <li>Python</li><li>JavaScript</li><li>Windows</li>
+              </ul>
+              <a class="card-link" href="https://github.com/Luca-CS/disk_manager">View code<span class="visually-hidden"> for disk_manager</span> ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
             <p class="card-kind">Chrome extension</p>
             <h3>WikiMasters Tagger</h3>
             <p class="repo">wikimasters-tagger</p>
+            <figure class="card-demo">
+              <video autoplay muted loop playsinline preload="metadata" width="1280" height="1000"
+                     poster="assets/demo/wikimasters-tagger-poster.jpg"
+                     aria-label="Screen recording of the WikiMasters Tagger panel on a fake collection page: analysis, tag suggestions, highlighted cards, report">
+                <source src="assets/demo/wikimasters-tagger-demo.webm" type="video/webm">
+                <source src="assets/demo/wikimasters-tagger-demo.mp4" type="video/mp4">
+              </video>
+              <figcaption>Recorded on a fake collection page (36 invented cards), not on the real site. The real extension is running.</figcaption>
+            </figure>
             <p>A Chrome extension (Manifest V3) and a Python CLI that suggest tags for a WikiMasters card collection, from rules and Wikidata.</p>
             <ul class="points">
               <li>Rule reliability report, compared with the tags set by hand.</li>
@@ -482,6 +504,17 @@
     </div>
   </footer>
 
+  <script>
+    // Demo videos: no autoplay for visitors who ask for reduced motion; the poster stays, with controls.
+    (function () {
+      if (!window.matchMedia || !matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      document.querySelectorAll(".card-demo video").forEach(function (video) {
+        video.removeAttribute("autoplay");
+        video.pause();
+        video.controls = true;
+      });
+    })();
+  </script>
   <script>
     // Light/dark button: follows the system until the visitor picks a theme, then remembers it.
     (function () {
