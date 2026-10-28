@@ -55,9 +55,8 @@
       <a class="brand" href="#top" aria-label="Luca Birtas, back to top">Luca Birtas</a>
       <nav class="site-nav" aria-label="Main navigation">
         <ul>
-          <li><a href="#experience">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#education">Education</a></li>
+          <li><a href="#cv">CV</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -74,39 +73,169 @@
       <div class="container">
         <p class="status">Seeking a 6-month end-of-studies internship or a permanent position, from 24 April 2027.</p>
         <h1 id="title">Luca Birtas</h1>
-
-        <dl class="facts" aria-label="At a glance">
-          <div>
-            <dt>Education</dt>
-            <dd>CentraleSupélec, computer science major<br>ESCP, financial markets major</dd>
-          </div>
-          <div>
-            <dt>Internships</dt>
-            <dd>Crédit Agricole CIB, HSBC, Tradeweb, Société Générale CIB</dd>
-          </div>
-          <div>
-            <dt>Languages</dt>
-            <dd>French, Romanian, fluent English</dd>
-          </div>
-          <div>
-            <dt>Code</dt>
-            <dd><a href="https://github.com/Luca-CS">6 public projects on GitHub</a></dd>
-          </div>
-        </dl>
-
+        <p class="lede">Engineering student at CentraleSupélec, master’s in financial markets at ESCP.</p>
         <div class="actions">
-          <a class="btn" href="#experience">See my experience</a>
-          <a class="textlink" href="/cv.pdf" download="Luca_Birtas_CV.pdf">Download my CV</a>
-          <a class="textlink" href="#contact">Get in touch</a>
+          <a class="btn" href="#cv">See my CV <span aria-hidden="true">↓</span></a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="experience" aria-labelledby="title-experience">
+    <section class="section" id="projects" aria-labelledby="title-projects">
       <div class="container">
         <div class="section-head">
-          <h2 id="title-experience"><span class="num" aria-hidden="true">01</span>Experience</h2>
-          <p>Four internships across financial markets, machine learning and data, in Paris and London.</p>
+          <h2 id="title-projects"><span class="num" aria-hidden="true">01</span>Projects</h2>
+          <p>Personal projects, all open source. Each README describes the method, the results and the limitations.</p>
+        </div>
+
+        <div class="projects">
+          <article class="card card-wide">
+            <p class="card-kind">Quantitative finance</p>
+            <h3>Option pricing lab</h3>
+            <p class="repo">option-pricing-lab</p>
+            <figure class="card-demo">
+              <a class="card-preview" href="https://luca-cs.github.io/option-pricing-lab/?product=american&amp;type=put">
+                <img class="only-light" src="assets/demo/option-pricing-lab-light.webp" width="880" height="629" loading="lazy" decoding="async"
+                     alt="Open the interactive pricing desk: an American put with its Greeks, simulated paths with the early-exercise boundary, and the Monte Carlo estimate converging to the tree price">
+                <img class="only-dark" src="assets/demo/option-pricing-lab-dark.webp" width="880" height="629" loading="lazy" decoding="async"
+                     alt="Open the interactive pricing desk: an American put with its Greeks, simulated paths with the early-exercise boundary, and the Monte Carlo estimate converging to the tree price">
+                <span class="card-preview-badge" aria-hidden="true">Interactive demo ↗</span>
+              </a>
+              <figcaption>Runs in the browser: change the product or a parameter and the price, Greeks and Monte Carlo update.</figcaption>
+            </figure>
+            <p>Python library that prices European, American, Asian and barrier options under Black-Scholes, Heston, Dupire local volatility and stochastic local volatility (SLV), calibrated to SPX options.</p>
+            <ul class="points">
+              <li>Local volatility and SLV reprice the SPX surface within 10 bp of implied volatility, across nine maturities from two weeks to two years.</li>
+              <li>With the same vanilla prices, a one-year up-and-out call is worth 1.9% of spot under Black-Scholes and 3.5% to 4.7% under the other three models.</li>
+              <li>76 tests compare each pricer with an independent reference: closed forms, a binomial tree, Reiner-Rubinstein for barriers.</li>
+            </ul>
+            <div class="card-foot">
+              <ul class="tags" aria-label="Technologies">
+                <li>Python</li><li>Monte Carlo</li><li>Heston</li><li>SLV</li><li>JavaScript</li>
+              </ul>
+              <span class="card-links">
+                <a class="card-link" href="https://luca-cs.github.io/option-pricing-lab/">Demo<span class="visually-hidden">: option pricing desk</span> ↗</a>
+                <a class="card-link" href="https://github.com/Luca-CS/option-pricing-lab">Code<span class="visually-hidden"> for option-pricing-lab</span> ↗</a>
+              </span>
+            </div>
+          </article>
+
+          <article class="card">
+            <p class="card-kind">Quantitative finance</p>
+            <h3>Time-series momentum study</h3>
+            <p class="repo">timeseries-momentum-study</p>
+            <p>Momentum and mean-reversion signals tested on 10 assets, with daily prices from 2000 to 2025. Signals are selected on the training period only, with a Holm-Bonferroni correction, then backtested on the test period.</p>
+            <ul class="points">
+              <li>9- to 12-month momentum does not hold out of sample.</li>
+              <li>A 2-month contrarian signal has a Sharpe ratio of 0.11 over 2018-2025, against 0.07 for an equal-weight portfolio.</li>
+              <li>A regime-switching extension (HMM) was tested and dropped: it did not find usable regimes.</li>
+            </ul>
+            <div class="card-foot">
+              <ul class="tags" aria-label="Technologies">
+                <li>Python</li><li>Jupyter</li><li>Backtest</li><li>HMM</li>
+              </ul>
+              <a class="card-link" href="https://github.com/Luca-CS/timeseries-momentum-study">Code<span class="visually-hidden"> for timeseries-momentum-study</span> ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <p class="card-kind">LLM · MCP</p>
+            <h3>Outlook bridge</h3>
+            <p class="repo">outlook-bridge</p>
+            <p>Read-only MCP server that lets Claude read desktop Outlook (mail and calendar) through COM. It needs neither Microsoft Graph nor an app registration, so it also works on accounts where these are blocked.</p>
+            <ul class="points">
+              <li>A test fails if the code contains any call that could modify a mailbox.</li>
+              <li>Mail content is marked as untrusted, to limit prompt injection.</li>
+              <li>Over 350 tests, run against a fake Outlook.</li>
+              <li>Built with Claude Code from a specification and safety rules I wrote.</li>
+            </ul>
+            <div class="card-foot">
+              <ul class="tags" aria-label="Technologies">
+                <li>Python</li><li>MCP</li><li>pywin32</li><li>pytest</li>
+              </ul>
+              <a class="card-link" href="https://github.com/Luca-CS/outlook-bridge">Code<span class="visually-hidden"> for outlook-bridge</span> ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <p class="card-kind">Windows tool</p>
+            <h3>Disk Manager</h3>
+            <p class="repo">disk_manager</p>
+            <figure class="card-demo">
+              <video autoplay muted loop playsinline preload="metadata" width="1280" height="760"
+                     poster="assets/demo/disk-manager-poster.jpg"
+                     aria-label="Screen recording of Disk Manager in simulation mode on a folder of test files: scan, treemap, duplicates, cleanup sorted by risk">
+                <source src="assets/demo/disk-manager-demo.webm" type="video/webm">
+                <source src="assets/demo/disk-manager-demo.mp4" type="video/mp4">
+              </video>
+              <figcaption>Simulation mode on a folder of test files; nothing is deleted.</figcaption>
+            </figure>
+            <p>Local storage manager for Windows: treemap, duplicate finder, cache cleanup sorted by risk, disk usage history.</p>
+            <ul class="points">
+              <li>No dependencies: Python standard library and a web interface with no build step.</li>
+              <li>No network access: the server listens on 127.0.0.1 only, with a strict CSP and a new token at each launch.</li>
+              <li>Deletions go to the recycle bin by default and only touch allow-listed caches, with protection against junctions and symbolic links.</li>
+            </ul>
+            <div class="card-foot">
+              <ul class="tags" aria-label="Technologies">
+                <li>Python</li><li>JavaScript</li><li>Windows</li>
+              </ul>
+              <a class="card-link" href="https://github.com/Luca-CS/disk_manager">Code<span class="visually-hidden"> for disk_manager</span> ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <p class="card-kind">Chrome extension</p>
+            <h3>WikiMasters Tagger</h3>
+            <p class="repo">wikimasters-tagger</p>
+            <figure class="card-demo">
+              <video autoplay muted loop playsinline preload="metadata" width="1280" height="1000"
+                     poster="assets/demo/wikimasters-tagger-poster.jpg"
+                     aria-label="Screen recording of the WikiMasters Tagger panel on a mock collection page: analysis, tag suggestions, highlighted cards, report">
+                <source src="assets/demo/wikimasters-tagger-demo.webm" type="video/webm">
+                <source src="assets/demo/wikimasters-tagger-demo.mp4" type="video/mp4">
+              </video>
+              <figcaption>Recorded on a mock collection page with invented cards.</figcaption>
+            </figure>
+            <p>Chrome extension (Manifest V3) and Python command-line tool that suggest tags for a WikiMasters card collection, from rules and Wikidata.</p>
+            <ul class="points">
+              <li>Report on how well the rules match the tags set by hand.</li>
+              <li>Highlights the cards to tag on the collection page.</li>
+              <li>Browser test bench for the rules.</li>
+            </ul>
+            <div class="card-foot">
+              <ul class="tags" aria-label="Technologies">
+                <li>JavaScript</li><li>Python</li><li>Wikidata</li>
+              </ul>
+              <a class="card-link" href="https://github.com/Luca-CS/wikimasters-tagger">Code<span class="visually-hidden"> for wikimasters-tagger</span> ↗</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <p class="card-kind">Machine learning · School project</p>
+            <h3>EmotionLLM</h3>
+            <p class="repo">EmotionLLM</p>
+            <p>Detects the emotion in a voice recording (six classes, trained on IEMOCAP) and passes it to Llama 3 8B, which adapts the tone of its reply.</p>
+            <ul class="points">
+              <li>Emotion classifier on MFCC features, in PyTorch.</li>
+              <li>Llama 3 8B run locally with Hugging Face Transformers.</li>
+              <li>CentraleSupélec project (ST7), March 2025.</li>
+            </ul>
+            <div class="card-foot">
+              <ul class="tags" aria-label="Technologies">
+                <li>Python</li><li>PyTorch</li><li>Transformers</li>
+              </ul>
+              <a class="card-link" href="https://github.com/Luca-CS/EmotionLLM">Code<span class="visually-hidden"> for EmotionLLM</span> ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cv" aria-labelledby="title-experience">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="title-experience"><span class="num" aria-hidden="true">02</span>Experience</h2>
+          <p>Four internships in financial markets, machine learning and data, in Paris and London. <a class="textlink" href="/cv.pdf" download="Luca_Birtas_CV.pdf">CV as PDF</a></p>
         </div>
 
         <h3 class="subhead">Internships</h3>
@@ -164,7 +293,7 @@
               <h4>Fixed Income Trading Risk Analyst</h4>
               <p class="where">Société Générale CIB</p>
               <ul>
-                <li>Built real-time risk monitoring tools (Greeks, VaR, IRC, CRM, LCR) across the full FIC perimeter, surfacing breaches the same morning instead of the legacy evening alert. Still in use after the internship.</li>
+                <li>Built real-time risk monitoring tools (Greeks, VaR, IRC, CRM, LCR) across the full FIC perimeter, so that breaches are flagged in the morning rather than in the evening alert. Still in use after the internship.</li>
                 <li>Diagnosed limit breaches with traders, cutting the average breach duration from 3.4 to 2.2 days.</li>
                 <li>Wrote desk reports on exceptional market events (BoJ rate hike, dissolution of the French National Assembly), analysing intraday rates, credit and FX moves.</li>
               </ul>
@@ -179,158 +308,16 @@
               <p class="when">Ongoing</p>
             </div>
             <div>
-              <h4>Process Automation</h4>
-              <p class="where">For companies</p>
+              <h4>Process automation</h4>
+              <p class="where">Freelance, for companies</p>
               <ul>
-                <li>Workflow automation around the tools companies already run: ERP, invoicing software, inventory management.</li>
-                <li>Agentic AI to take repetitive steps off these workflows.</li>
-                <li>Solutions delivered ready to use, with support and training for the teams that use them.</li>
+                <li>Automation of repetitive work around the tools companies already use: ERP, invoicing, inventory management.</li>
+                <li>LLM agents where they remove manual steps.</li>
+                <li>Delivered with support and training for the people who use them.</li>
               </ul>
             </div>
           </li>
         </ol>
-      </div>
-    </section>
-
-    <section class="section" id="projects" aria-labelledby="title-projects">
-      <div class="container">
-        <div class="section-head">
-          <h2 id="title-projects"><span class="num" aria-hidden="true">02</span>Projects</h2>
-          <p>Six open-source projects outside my internships: quantitative finance, Python tooling and LLM integration. Each repository has a README covering the method, the results and the limitations.</p>
-        </div>
-
-        <div class="projects">
-          <article class="card">
-            <p class="card-kind">Quantitative finance</p>
-            <h3>Option pricing lab: exotics under four models</h3>
-            <p class="repo">option-pricing-lab</p>
-            <p>A tested Python library that prices European, American, Asian and barrier options under Black-Scholes, Heston, Dupire local volatility and a stochastic-local-volatility model whose leverage function is calibrated by the particle method, all fitted to an SPX option snapshot.</p>
-            <ul class="points">
-              <li>Local volatility and SLV reprice the SPX surface to within 10 bp of implied volatility across nine maturities, from two weeks to two years.</li>
-              <li>Model risk made visible: with the vanillas held fixed, a one-year up-and-out call is worth 1.9% of spot under Black-Scholes and 3.5 to 4.7% under the smile models.</li>
-              <li>76 tests, each pricer checked against an independent reference: closed forms, a binomial tree, Reiner-Rubinstein barriers.</li>
-              <li>In-browser pricing desk: price and Greeks, animated Monte Carlo, early-exercise boundary.</li>
-            </ul>
-            <div class="card-foot">
-              <ul class="tags" aria-label="Technologies">
-                <li>Python</li><li>Monte Carlo</li><li>Heston</li><li>SLV</li><li>JavaScript</li>
-              </ul>
-              <span class="card-links">
-                <a class="card-link" href="https://luca-cs.github.io/option-pricing-lab/">Try the demo<span class="visually-hidden">: option pricing desk</span> ↗</a>
-                <a class="card-link" href="https://github.com/Luca-CS/option-pricing-lab">View code<span class="visually-hidden"> for option-pricing-lab</span> ↗</a>
-              </span>
-            </div>
-          </article>
-
-          <article class="card">
-            <p class="card-kind">Quantitative finance</p>
-            <h3>Time-series momentum: overfitting or robust signal?</h3>
-            <p class="repo">timeseries-momentum-study</p>
-            <p>A momentum strategy studied on 10 assets with daily prices from 2000 to 2025. The protocol is built against overfitting: tests on the training period only, Holm-Bonferroni correction, backtest on the test period only.</p>
-            <ul class="points">
-              <li>Negative result, reported as such: 9-12 month momentum does not hold out of sample.</li>
-              <li>The 2-month contrarian signal reaches a Sharpe ratio of +0.11 over 2018-2025, against +0.07 for the equal-weight benchmark.</li>
-              <li>An HMM regime extension was tested and rejected: the regimes found are not usable.</li>
-            </ul>
-            <div class="card-foot">
-              <ul class="tags" aria-label="Technologies">
-                <li>Python</li><li>Jupyter</li><li>Backtest</li><li>HMM</li>
-              </ul>
-              <a class="card-link" href="https://github.com/Luca-CS/timeseries-momentum-study">View code<span class="visually-hidden"> for timeseries-momentum-study</span> ↗</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <p class="card-kind">LLM · MCP</p>
-            <h3>outlook-bridge</h3>
-            <p class="repo">outlook-bridge</p>
-            <p>A read-only MCP server that gives Claude access to desktop Outlook through COM. No Microsoft Graph and no app registration, so it also works on corporate or school accounts that forbid them.</p>
-            <ul class="points">
-              <li>Read-only enforced by a test that rejects any call able to change a mailbox.</li>
-              <li>Mail content labelled as untrusted, against prompt injection.</li>
-              <li>350+ tests; the logic is tested without Outlook against a fake gateway.</li>
-              <li>I wrote the specification and the safety rules, then built it in phases with Claude Code.</li>
-            </ul>
-            <div class="card-foot">
-              <ul class="tags" aria-label="Technologies">
-                <li>Python</li><li>MCP</li><li>pywin32</li><li>pytest</li>
-              </ul>
-              <a class="card-link" href="https://github.com/Luca-CS/outlook-bridge">View code<span class="visually-hidden"> for outlook-bridge</span> ↗</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <p class="card-kind">AI · School project</p>
-            <h3>EmotionLLM</h3>
-            <p class="repo">EmotionLLM</p>
-            <p>Speak into the microphone: a CNN detects the emotion in your voice, and Llama 3 8B replies in a matching tone, reassuring when you sound frustrated, calm when you sound angry.</p>
-            <ul class="points">
-              <li>CNN on MFCC features, trained on IEMOCAP, six emotions.</li>
-              <li>Llama 3 8B running locally with Transformers.</li>
-              <li>CentraleSupélec ST7 project, March 2025.</li>
-            </ul>
-            <div class="card-foot">
-              <ul class="tags" aria-label="Technologies">
-                <li>Python</li><li>PyTorch</li><li>Transformers</li>
-              </ul>
-              <a class="card-link" href="https://github.com/Luca-CS/EmotionLLM">View code<span class="visually-hidden"> for EmotionLLM</span> ↗</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <p class="card-kind">Windows tool</p>
-            <h3>Disk Manager</h3>
-            <p class="repo">disk_manager</p>
-            <figure class="card-demo">
-              <video autoplay muted loop playsinline preload="metadata" width="1280" height="760"
-                     poster="assets/demo/disk-manager-poster.jpg"
-                     aria-label="Screen recording of Disk Manager in simulation mode on a folder of fake files: scan, treemap, duplicates, cleanup ranked by risk">
-                <source src="assets/demo/disk-manager-demo.webm" type="video/webm">
-                <source src="assets/demo/disk-manager-demo.mp4" type="video/mp4">
-              </video>
-              <figcaption>Recorded in simulation mode on a folder of fake files. Nothing is deleted.</figcaption>
-            </figure>
-            <p>A fully local storage manager for Windows: treemap, duplicate finder, cache cleanup ranked by risk level, and disk usage history.</p>
-            <ul class="points">
-              <li>No dependencies: Python standard library and a web interface without a build step.</li>
-              <li>No network calls: server bound to 127.0.0.1, strict CSP, a random token on each launch.</li>
-              <li>Guarded deletions: recycle bin by default, allow-listed caches, protection against junctions and symbolic links.</li>
-            </ul>
-            <div class="card-foot">
-              <ul class="tags" aria-label="Technologies">
-                <li>Python</li><li>JavaScript</li><li>Windows</li>
-              </ul>
-              <a class="card-link" href="https://github.com/Luca-CS/disk_manager">View code<span class="visually-hidden"> for disk_manager</span> ↗</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <p class="card-kind">Chrome extension</p>
-            <h3>WikiMasters Tagger</h3>
-            <p class="repo">wikimasters-tagger</p>
-            <figure class="card-demo">
-              <video autoplay muted loop playsinline preload="metadata" width="1280" height="1000"
-                     poster="assets/demo/wikimasters-tagger-poster.jpg"
-                     aria-label="Screen recording of the WikiMasters Tagger panel on a fake collection page: analysis, tag suggestions, highlighted cards, report">
-                <source src="assets/demo/wikimasters-tagger-demo.webm" type="video/webm">
-                <source src="assets/demo/wikimasters-tagger-demo.mp4" type="video/mp4">
-              </video>
-              <figcaption>Recorded on a fake collection page (36 invented cards), not on the real site. The real extension is running.</figcaption>
-            </figure>
-            <p>A Chrome extension (Manifest V3) and a Python CLI that suggest tags for a WikiMasters card collection, from rules and Wikidata.</p>
-            <ul class="points">
-              <li>Rule reliability report, compared with the tags set by hand.</li>
-              <li>Cards to tag highlighted directly on the site.</li>
-              <li>In-browser test bench for the rules.</li>
-            </ul>
-            <div class="card-foot">
-              <ul class="tags" aria-label="Technologies">
-                <li>JavaScript</li><li>Python</li><li>Wikidata</li>
-              </ul>
-              <a class="card-link" href="https://github.com/Luca-CS/wikimasters-tagger">View code<span class="visually-hidden"> for wikimasters-tagger</span> ↗</a>
-            </div>
-          </article>
-        </div>
       </div>
     </section>
 
@@ -393,7 +380,7 @@
               <h4>President of CS Asie</h4>
               <p class="where">Club promoting Asian cultures at CentraleSupélec</p>
               <ul>
-                <li>Managed a €10k annual budget and event logistics, delivering cultural events for 500+ students.</li>
+                <li>Managed a €10k annual budget and the logistics of cultural events for 500+ students.</li>
               </ul>
             </div>
           </li>
@@ -418,7 +405,7 @@
               <h4>International Physics Olympiad preparation</h4>
               <p class="where">ENS Ulm, Paris</p>
               <ul>
-                <li>Experimental and theoretical preparation. 12 students selected nationwide through written examinations.</li>
+                <li>One of 12 students selected nationwide through written exams, for theoretical and experimental training.</li>
               </ul>
             </div>
           </li>
@@ -479,7 +466,6 @@
       <div class="container">
         <div class="section-head">
           <h2 id="title-contact"><span class="num" aria-hidden="true">05</span>Contact</h2>
-          <p>An opportunity, a question about a project? The easiest way is to email me.</p>
         </div>
 
         <!-- Address encoded as HTML entities: readable for visitors, harder for spam bots. -->
@@ -500,7 +486,7 @@
   <footer class="site-footer">
     <div class="container">
       <p>© 2026 Luca Birtas</p>
-      <p>Handmade in HTML and CSS, no trackers. <a href="https://github.com/Luca-CS/Luca-CS.github.io">Source code</a></p>
+      <p>No trackers. <a href="https://github.com/Luca-CS/Luca-CS.github.io">Source code</a></p>
     </div>
   </footer>
 

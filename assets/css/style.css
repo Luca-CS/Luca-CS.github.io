@@ -140,7 +140,6 @@ p {
 
 /* Petites capitales espacées : étiquettes, titres de section */
 .label,
-.facts dt,
 .section h2,
 .subhead,
 .card .card-kind,
@@ -288,7 +287,7 @@ p {
 }
 
 .hero h1 {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-family: var(--serif);
   font-size: clamp(3rem, 12vw, 4.75rem);
   font-weight: 400;
@@ -296,28 +295,11 @@ p {
   letter-spacing: -0.015em;
 }
 
-.facts {
-  display: grid;
-  gap: 1rem 2.5rem;
-  margin: 0 0 2.25rem;
-  padding-top: 1.25rem;
+.lede {
+  margin-bottom: 2rem;
+  padding-top: 1rem;
   border-top: 1px solid var(--text);
-}
-
-@media (min-width: 36rem) {
-  .facts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.facts dt {
-  margin-bottom: 0.2rem;
-  color: var(--muted);
-}
-
-.facts dd {
-  margin: 0;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
 }
 
 .actions {
@@ -380,6 +362,10 @@ p {
   max-width: 40rem;
   margin-top: 0.75rem;
   color: var(--muted);
+}
+
+.section-head .textlink {
+  white-space: nowrap;
 }
 
 .subhead {
@@ -496,9 +482,32 @@ p {
 }
 
 @media (min-width: 48rem) {
-  .card:nth-child(2) {
+  .card:first-child:not(.card-wide) + .card {
     padding-top: 0;
     border-top: 0;
+  }
+
+  /* Projet mis en avant : sur toute la largeur, la démo à gauche et le texte à droite */
+  .card-wide {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    grid-template-rows: repeat(5, auto) 1fr;
+    column-gap: 2.5rem;
+  }
+
+  .card-wide > * {
+    grid-column: 2;
+  }
+
+  .card-wide > .card-demo {
+    grid-row: 1 / -1;
+    grid-column: 1;
+    margin: 0;
+  }
+
+  .card-wide .card-foot {
+    align-self: end;
   }
 }
 
@@ -586,6 +595,80 @@ p {
   margin-top: 0.4rem;
   color: var(--muted);
   font-size: 0.8rem;
+}
+
+/* Démo jouable : capture cliquable de la même taille que les vidéos, avec une étiquette discrète */
+.card-preview {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--line);
+}
+
+.card-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.2s ease;
+}
+
+.card-preview-badge {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  background: var(--bg);
+  color: var(--accent);
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.card-preview:hover,
+.card-preview:focus-visible {
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.card-preview:hover img,
+.card-preview:focus-visible img {
+  opacity: 0.85;
+}
+
+.card-preview:hover .card-preview-badge,
+.card-preview:focus-visible .card-preview-badge {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Capture claire ou sombre selon le thème, comme les icônes du bouton */
+.only-dark {
+  display: none !important;
+}
+
+:root[data-theme="dark"] .only-light {
+  display: none !important;
+}
+
+:root[data-theme="dark"] .only-dark {
+  display: block !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .only-light {
+    display: none !important;
+  }
+
+  :root:not([data-theme="light"]) .only-dark {
+    display: block !important;
+  }
 }
 
 /* ---------- Compétences ---------- */
